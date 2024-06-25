@@ -5,16 +5,16 @@
     <title>rift.host 🌀</title>
     <link rel="stylesheet" href="/css/output.css">
 </head>
-<body class="flex flex-col justify-center w-screen">
+<body class="flex flex-col justify-center min-h-screen">
 <div>
-    <div class="flex flex-col justify-center items-center mt-24 mb-8">
-        <div class="text-center">
-            <h1 class="text-8xl">🌀</h1>
-            <h1 class="text-4xl font-semibold mt-4">rift.host</h1>
+    <div class="flex flex-col justify-center items-center mt-12 mb-8 px-4">
+        <div class="text-center w-full">
+            <h1 class="text-6xl sm:text-8xl">🌀</h1>
+            <h1 class="text-2xl sm:text-4xl font-semibold mt-4">rift.host</h1>
         </div>
     </div>
 </div>
-<div id="sitesTable" class="flex flex-wrap justify-center w-1/2 self-center">
+<div id="sitesTable" class="flex flex-wrap justify-center w-full md:w-2/3 lg:w-1/2 self-center px-4">
     <!-- Entries will be mapped here -->
 </div>
 
@@ -27,16 +27,16 @@
             const sitesContainer = document.getElementById('sitesTable');
             sites.forEach(site => {
                 const siteDiv = document.createElement('div');
-                siteDiv.className = "border border-purple-200 rounded m-4 p-4 w-1/2 flex justify-between items-center";
+                siteDiv.className = "border border-purple-200 rounded m-4 p-4 w-full flex flex-col md:flex-row justify-between items-center";
 
                 const siteName = document.createElement('a');
-                siteName.className = "text-xl font-semibold";
+                siteName.className = "text-lg sm:text-xl font-semibold mb-2 md:mb-0";
                 siteName.href = "https://" + site.sub;
                 siteName.textContent = site.sub;
                 siteDiv.appendChild(siteName);
 
                 const statusContainer = document.createElement('div');
-                statusContainer.className = "flex items-center justify-center";
+                statusContainer.className = "flex items-center justify-center mb-2 md:mb-0";
                 siteDiv.appendChild(statusContainer);
 
                 const statusCircle = document.createElement('div');
@@ -60,12 +60,12 @@
 
                 const githubLink = document.createElement('a');
                 githubLink.href = site.source;
+                githubLink.className = "flex items-center justify-center";
 
                 const githubImage = document.createElement('img');
                 githubImage.src = "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png";
                 githubImage.alt = "GitHub";
-                githubImage.style.width = '20px';
-                githubImage.style.height = '20px';
+                githubImage.className = "w-5 h-5";
 
                 githubLink.appendChild(githubImage);
                 siteDiv.appendChild(githubLink);
