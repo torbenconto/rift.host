@@ -5,14 +5,74 @@
     <title>rift.host 🌀</title>
     <link rel="stylesheet" href="/css/output.css">
 </head>
-<body>
-    <div class="container mx-auto">
-        <div class="flex justify-center items-center h-screen">
-            <div class="text-center">
-                <h1 class="text-8xl">🌀</h1>
-                <h1 class="text-4xl font-semibold mt-4">rift.host</h1>
-            </div>
+<body class="flex flex-col justify-center w-screen">
+<div>
+    <div class="flex flex-col justify-center items-center mt-24 mb-8">
+        <div class="text-center">
+            <h1 class="text-8xl">🌀</h1>
+            <h1 class="text-4xl font-semibold mt-4">rift.host</h1>
         </div>
     </div>
+</div>
+<div id="sitesTable" class="flex flex-wrap justify-center w-1/2 self-center">
+    <!-- Entries will be mapped here -->
+</div>
+
 </body>
+
+<script>
+    fetch('/sites')
+        .then(response => response.json())
+        .then(sites => {
+            const sitesContainer = document.getElementById('sitesTable');
+            sites.forEach(site => {
+                const siteDiv = document.createElement('div');
+                siteDiv.className = "border border-purple-200 rounded m-4 p-4 w-1/2 flex justify-between items-center";
+
+                const siteName = document.createElement('a');
+                siteName.className = "text-xl font-semibold";
+                siteName.href = "https://" + site.sub;
+                siteName.textContent = site.sub;
+                siteDiv.appendChild(siteName);
+
+                const statusContainer = document.createElement('div');
+                statusContainer.className = "flex items-center justify-center";
+                siteDiv.appendChild(statusContainer);
+
+                const statusCircle = document.createElement('div');
+                statusCircle.className = "h-4 w-4 rounded-full inline-block align-middle mr-1";
+                statusContainer.appendChild(statusCircle);
+
+                const statusCode = document.createElement('span');
+                statusCode.className = "text-xs ml-1";
+                statusContainer.appendChild(statusCode);
+
+                fetch(site.statusurl)
+                    .then(response => {
+                        statusCircle.classList.toggle("bg-green-500", response.status === 200);
+                        statusCircle.classList.toggle("bg-red-500", response.status !== 200);
+                        statusCode.textContent = response.status;
+                    })
+                    .catch(() => {
+                        statusCircle.classList.add("bg-red-500");
+                        statusCode.textContent = "Network Error";
+                    });
+
+                const githubLink = document.createElement('a');
+                githubLink.href = site.source;
+
+                const githubImage = document.createElement('img');
+                githubImage.src = "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png";
+                githubImage.alt = "GitHub";
+                githubImage.style.width = '20px';
+                githubImage.style.height = '20px';
+
+                githubLink.appendChild(githubImage);
+                siteDiv.appendChild(githubLink);
+
+                sitesContainer.appendChild(siteDiv);
+            });
+        });
+</script>
+
 </html>

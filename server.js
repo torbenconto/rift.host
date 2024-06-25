@@ -1,6 +1,7 @@
 import express from 'express'
 import path, {dirname} from 'path'
 import { fileURLToPath } from 'url';
+import { sites } from './sites.js';
 
 const app = express();
 const PORT = 8086;
@@ -13,6 +14,10 @@ app.use(express.static(path.join(__dirname, 'src')));
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname,'src/index.html'));
+});
+
+app.get('/sites', (req, res) => {
+    res.json(sites);
 });
 
 app.listen(PORT, () => {
