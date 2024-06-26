@@ -5,9 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npx tailwindcss -i src/css/input.css -o src/css/output.css --watch\" \"npx nodemon -e js,json,html server.js\"",
+    "dev": "concurrently \"npx tailwindcss -i public/css/input.css -o public/css/output.css --watch\" \"npx nodemon -e js,json,html server.js\"",
     "start": "node server.js",
-    "build:css": "tailwindcss build -i src/css/input.css -o src/css/output.css",
+    "build:css": "tailwindcss build -i public/css/input.css -o public/css/output.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
