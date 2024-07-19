@@ -16,5 +16,17 @@ export const sites = [
         "name": "link shortener mirror",
         "statusurl": "https://l.rift.host/",
         "source": "https://github.com/torbenconto/simple-link-shortener"
-    }
+    },
+    {
+        "sub": "files.rift.host",
+        "name": "free file hoster",
+        "statusurl": "https://files.rift.host/",
+        "source": "https://github.com/torbenconto/simple-file-hoster"
+    },
+    {
+        "sub": "f.rift.host",
+        "name": "free file hoster mirror",
+        "statusurl": "https://f.rift.host/",
+        "source": "https://github.com/torbenconto/simple-file-hoster",
+    },
 ]
